@@ -1,4 +1,3 @@
-
 import streamlit as st
 import numpy as np
 import matplotlib.pyplot as plt
@@ -12,6 +11,18 @@ st.set_page_config(
     page_icon="📈",
     layout="centered"
 )
+
+# ============================================
+# LOGOMARCA
+# ============================================
+
+col1, col2, col3 = st.columns([1, 2, 1])
+
+with col2:
+    st.image(
+        "mat.jpeg",
+        use_container_width=True
+    )
 
 # ============================================
 # TÍTULO
@@ -124,17 +135,14 @@ if st.button("Calcular", use_container_width=True):
 
         st.subheader("📊 Gráfico da função")
 
-        # Cria valores para x
         x = np.linspace(
             x_raiz - 10,
             x_raiz + 10,
             500
         )
 
-        # Função do primeiro grau
         y = a * x + b
 
-        # Cria gráfico
         fig, ax = plt.subplots()
 
         # Desenha a reta
@@ -169,7 +177,6 @@ if st.button("Calcular", use_container_width=True):
         # ====================================
 
         ax.set_xlabel("x")
-
         ax.set_ylabel("y")
 
         ax.set_title(
@@ -177,12 +184,13 @@ if st.button("Calcular", use_container_width=True):
         )
 
         ax.grid(True)
-
         ax.legend()
 
         # ====================================
-        # MOSTRA O GRÁFICO NO STREAMLIT
+        # MOSTRA O GRÁFICO
         # ====================================
 
         st.pyplot(fig)
 
+        # Fecha a figura para liberar memória
+        plt.close(fig)
