@@ -1,6 +1,7 @@
 import streamlit as st
 import numpy as np
 import matplotlib.pyplot as plt
+from pathlib import Path
 
 # ============================================
 # CONFIGURAÇÃO DA PÁGINA
@@ -13,15 +14,34 @@ st.set_page_config(
 )
 
 # ============================================
+# CAMINHO DA PASTA DO PROGRAMA
+# ============================================
+
+PASTA_APP = Path(__file__).parent
+
+# ============================================
+# CAMINHO DA LOGOMARCA
+# ============================================
+
+CAMINHO_LOGO = PASTA_APP / "mat.jpeg"
+
+# ============================================
 # LOGOMARCA
 # ============================================
 
-col1, col2, col3 = st.columns([1, 2, 1])
+if CAMINHO_LOGO.exists():
 
-with col2:
-    st.image(
-        "mat.jpeg",
-        use_container_width=True
+    col1, col2, col3 = st.columns([1, 2, 1])
+
+    with col2:
+        st.image(
+            str(CAMINHO_LOGO),
+            use_container_width=True
+        )
+
+else:
+    st.warning(
+        "⚠️ A imagem mat.jpeg não foi encontrada."
     )
 
 # ============================================
@@ -54,7 +74,10 @@ b = st.number_input(
 # BOTÃO CALCULAR
 # ============================================
 
-if st.button("Calcular", use_container_width=True):
+if st.button(
+    "Calcular",
+    use_container_width=True
+):
 
     # ========================================
     # VERIFICA O VALOR DE A
@@ -86,7 +109,9 @@ if st.button("Calcular", use_container_width=True):
 
         st.subheader("✅ Resultado")
 
-        st.write("A raiz da equação é:")
+        st.write(
+            "A raiz da equação é:"
+        )
 
         st.success(
             f"x = {x_raiz:.2f}"
@@ -113,9 +138,14 @@ if st.button("Calcular", use_container_width=True):
 
         st.subheader("Resolução")
 
-        st.latex(
-            f"{a}x + ({b}) = 0"
-        )
+        if b >= 0:
+            st.latex(
+                f"{a}x + {b} = 0"
+            )
+        else:
+            st.latex(
+                f"{a}x - {abs(b)} = 0"
+            )
 
         st.latex(
             f"{a}x = {-b}"
@@ -133,34 +163,42 @@ if st.button("Calcular", use_container_width=True):
         # GRÁFICO
         # ====================================
 
-        st.subheader("📊 Gráfico da função")
+        st.subheader(
+            "📊 Gráfico da função"
+        )
 
+        # Cria intervalo para o gráfico
         x = np.linspace(
             x_raiz - 10,
             x_raiz + 10,
             500
         )
 
+        # Função do primeiro grau
         y = a * x + b
 
-        fig, ax = plt.subplots()
+        # Cria gráfico
+        fig, ax = plt.subplots(
+            figsize=(8, 5)
+        )
 
         # Desenha a reta
         ax.plot(
             x,
             y,
+            linewidth=2,
             label=f"y = {a}x + {b}"
         )
 
         # Eixo X
         ax.axhline(
-            0,
+            y=0,
             linewidth=1
         )
 
         # Eixo Y
         ax.axvline(
-            0,
+            x=0,
             linewidth=1
         )
 
@@ -168,7 +206,8 @@ if st.button("Calcular", use_container_width=True):
         ax.scatter(
             [x_raiz],
             [0],
-            s=80,
+            s=100,
+            zorder=5,
             label=f"Raiz x = {x_raiz:.2f}"
         )
 
@@ -184,13 +223,24 @@ if st.button("Calcular", use_container_width=True):
         )
 
         ax.grid(True)
+
         ax.legend()
 
         # ====================================
-        # MOSTRA O GRÁFICO
+        # MOSTRA GRÁFICO
         # ====================================
 
         st.pyplot(fig)
 
-        # Fecha a figura para liberar memória
         plt.close(fig)
+
+# ============================================
+# RODAPÉ
+# ============================================
+
+st.divider()
+
+st.caption(
+    "📚 Calculadora de Equação do 1º Grau"
+)
+
