@@ -136,7 +136,7 @@ b = st.number_input(
 # ============================================
 
 if st.button(
-    "🌸 CALCULAR",
+    "🟢 CALCULAR",
     use_container_width=True
 ):
 
