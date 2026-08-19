@@ -14,6 +14,68 @@ st.set_page_config(
 )
 
 # ============================================
+# FUNDO ROSA
+# ============================================
+
+st.markdown(
+    """
+    <style>
+
+    /* Fundo principal da página */
+    .stApp {
+        background-color: #F8BBD0;
+    }
+
+    /* Cor padrão dos textos */
+    .stApp,
+    .stApp p,
+    .stApp label,
+    .stApp span {
+        color: #4A0033;
+    }
+
+    /* Títulos */
+    h1, h2, h3 {
+        color: #880E4F !important;
+    }
+
+    /* Caixa dos campos numéricos */
+    div[data-baseweb="input"] > div {
+        background-color: white !important;
+        border: 2px solid #EC407A !important;
+        border-radius: 10px !important;
+    }
+
+    /* Valor digitado */
+    div[data-baseweb="input"] input {
+        color: black !important;
+        background-color: white !important;
+    }
+
+    /* Botão */
+    .stButton > button {
+        background-color: #EC407A;
+        color: white;
+        border: none;
+        border-radius: 10px;
+        font-size: 18px;
+        font-weight: bold;
+        padding: 10px;
+    }
+
+    /* Botão quando passa o mouse */
+    .stButton > button:hover {
+        background-color: #C2185B;
+        color: white;
+        border: none;
+    }
+
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
+# ============================================
 # CAMINHO DA PASTA DO PROGRAMA
 # ============================================
 
@@ -75,7 +137,7 @@ b = st.number_input(
 # ============================================
 
 if st.button(
-    "Calcular",
+    "🌸 CALCULAR",
     use_container_width=True
 ):
 
@@ -86,11 +148,13 @@ if st.button(
     if a == 0:
 
         if b == 0:
+
             st.warning(
                 "A equação possui infinitas soluções."
             )
 
         else:
+
             st.error(
                 "A equação não possui solução."
             )
@@ -121,13 +185,16 @@ if st.button(
         # MOSTRA A EQUAÇÃO
         # ====================================
 
-        st.subheader("Equação")
+        st.subheader("📝 Equação")
 
         if b >= 0:
+
             st.latex(
                 f"{a}x + {b} = 0"
             )
+
         else:
+
             st.latex(
                 f"{a}x - {abs(b)} = 0"
             )
@@ -136,13 +203,16 @@ if st.button(
         # MOSTRA O CÁLCULO
         # ====================================
 
-        st.subheader("Resolução")
+        st.subheader("🧮 Resolução")
 
         if b >= 0:
+
             st.latex(
                 f"{a}x + {b} = 0"
             )
+
         else:
+
             st.latex(
                 f"{a}x - {abs(b)} = 0"
             )
@@ -167,17 +237,17 @@ if st.button(
             "📊 Gráfico da função"
         )
 
-        # Cria intervalo para o gráfico
+        # Intervalo do gráfico
         x = np.linspace(
             x_raiz - 10,
             x_raiz + 10,
             500
         )
 
-        # Função do primeiro grau
+        # Função
         y = a * x + b
 
-        # Cria gráfico
+        # Cria o gráfico
         fig, ax = plt.subplots(
             figsize=(8, 5)
         )
@@ -208,7 +278,7 @@ if st.button(
             [0],
             s=100,
             zorder=5,
-            label=f"Raiz x = {x_raiz:.2f}"
+            label=f"Raiz: x = {x_raiz:.2f}"
         )
 
         # ====================================
@@ -216,6 +286,7 @@ if st.button(
         # ====================================
 
         ax.set_xlabel("x")
+
         ax.set_ylabel("y")
 
         ax.set_title(
@@ -227,10 +298,13 @@ if st.button(
         ax.legend()
 
         # ====================================
-        # MOSTRA GRÁFICO
+        # MOSTRA O GRÁFICO
         # ====================================
 
-        st.pyplot(fig)
+        st.pyplot(
+            fig,
+            use_container_width=True
+        )
 
         plt.close(fig)
 
@@ -243,4 +317,3 @@ st.divider()
 st.caption(
     "📚 Calculadora de Equação do 1º Grau"
 )
-
