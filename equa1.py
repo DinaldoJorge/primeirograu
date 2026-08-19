@@ -14,7 +14,7 @@ st.set_page_config(
 )
 
 # ============================================
-# FUNDO verde
+# FUNDO VERDE OLIVA
 # ============================================
 
 st.markdown(
@@ -23,7 +23,7 @@ st.markdown(
 
     /* Fundo principal da página */
     .stApp {
-        background-color: #F8BBD0;
+        background-color: #DDE5B6;
     }
 
     /* Cor padrão dos textos */
@@ -31,30 +31,30 @@ st.markdown(
     .stApp p,
     .stApp label,
     .stApp span {
-        color: #4A0033;
+        color: #283618;
     }
 
     /* Títulos */
     h1, h2, h3 {
-        color: #880E4F !important;
+        color: #606C38 !important;
     }
 
     /* Caixa dos campos numéricos */
     div[data-baseweb="input"] > div {
         background-color: white !important;
-        border: 2px solid #EC407A !important;
+        border: 2px solid #7A8B3A !important;
         border-radius: 10px !important;
     }
 
     /* Valor digitado */
     div[data-baseweb="input"] input {
-        color: black !important;
+        color: #283618 !important;
         background-color: white !important;
     }
 
     /* Botão */
     .stButton > button {
-        background-color: #EC407A;
+        background-color: #6B7A32;
         color: white;
         border: none;
         border-radius: 10px;
@@ -65,7 +65,7 @@ st.markdown(
 
     /* Botão quando passa o mouse */
     .stButton > button:hover {
-        background-color: #C2185B;
+        background-color: #4F5D23;
         color: white;
         border: none;
     }
@@ -74,7 +74,6 @@ st.markdown(
     """,
     unsafe_allow_html=True
 )
-
 # ============================================
 # CAMINHO DA PASTA DO PROGRAMA
 # ============================================
